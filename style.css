@@ -1,0 +1,19 @@
+:root {
+    --divisor: 16;
+}
+
+#container {
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    max-height: 960px;
+    max-width: 960px;
+}
+
+.square {
+    aspect-ratio: 1/1;
+    width: calc(100% / var(--divisor));
+    height: calc(100% / var(--divisor));
+    outline: 1px solid black;
+    box-sizing: border-box;
+}
