@@ -45,8 +45,8 @@ resetBtn.addEventListener("click", () => {
 gridBtn.addEventListener("click", () => {
     gridSize = parseInt(prompt("How big should the grid be? Enter a number from 1-100"));
     //clear and create the new grid, allowing up to 100x100, disallowing anything beyond and non-numbers 
-    if (gridSize !== null && gridSize < 100 && gridSize > 0 && typeof gridSize === 'number') {
-        resetBtn.click();
+    container.innerHTML = "";
+    if (gridSize !== null && gridSize <= 100 && gridSize > 0 && typeof gridSize === 'number') {
         createGrid(gridSize);
     } else {
         alert("Please enter a valid number between 1 and 100");
