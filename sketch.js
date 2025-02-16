@@ -6,6 +6,8 @@ let gridSize = 16;
 let isDrawing = false;
 createGrid(gridSize);
 
+
+
 function createGrid (gridSize) {
     for (i=0; i < gridSize * gridSize; i++) {
         const square = document.createElement("div");
@@ -30,6 +32,36 @@ function createGrid (gridSize) {
             isDrawing = false;
         });
     });
+    // Prevent default scrolling when touching the grid
+    document.addEventListener("touchmove", function(event) {
+        event.preventDefault();
+    }, { passive: false });
+
+    // Touch drawing logic
+    container.addEventListener("touchstart", (event) => {
+        isDrawing = true;
+        event.preventDefault(); // Prevents scrolling
+        const touch = event.touches[0];
+        const target = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (target && target.classList.contains("square")) {
+            target.style.backgroundColor = "purple";
+        }
+    });
+
+    container.addEventListener("touchmove", (event) => {
+        if (!isDrawing) return;
+        event.preventDefault(); // Prevents scrolling
+        const touch = event.touches[0];
+        const target = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (target && target.classList.contains("square")) {
+            target.style.backgroundColor = "purple";
+        }
+    });
+
+    container.addEventListener("touchend", () => {
+        isDrawing = false;
+    });
+        
 };
 
 //erase the existing grid
